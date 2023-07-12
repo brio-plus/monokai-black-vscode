@@ -350,7 +350,7 @@
     "sideBar.background": "#191919",
     "sideBar.border": "#131313",
     "sideBar.dropBackground": "#191919bf",
-    "sideBar.foreground": "#8b888f",
+    "sideBar.foreground": "#ffffff",
     "sideBarSectionHeader.background": "#191919",
     "sideBarSectionHeader.foreground": "#69676c",
     "sideBarTitle.foreground": "#525053",
