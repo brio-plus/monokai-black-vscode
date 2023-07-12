@@ -3,7 +3,7 @@
   "displayName": "Monokai Black",
   "description": "Monokai Black, very Black.",
   "publisher": "brio-plus",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.79.0"
   },

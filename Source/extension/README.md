@@ -1,7 +1,7 @@
 Monokai Black for Visual Studio Code
 ==================================
 
-Monokai Black is a color scheme and icon set for Visual Studio Code. The goal of Monokai Black is to let you focus on your code without causing eyes strain.
+Monokai Black is a color scheme and icon set for Visual Studio Code. Focus on your code without eyes strain.
 
 ### Installation:
 
@@ -13,9 +13,9 @@ Monokai Black is a color scheme and icon set for Visual Studio Code. The goal of
 
 ### Python
 
-![alt text](images/python_test.jpg "Python")
+![Python](https://gitlab.com/yann.lischetti/monokai-black-vscode/-/raw/main/Source/extension/images/python_test.jpg "Python")
 
 
 ### Typescript
 
-![alt text](images/typescript_test.jpg "Python")
+![Typescript](https://gitlab.com/yann.lischetti/monokai-black-vscode/-/raw/main/Source/extension/images/typescript_test.jpg "Typescript")
