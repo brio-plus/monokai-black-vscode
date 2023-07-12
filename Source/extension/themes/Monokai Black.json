@@ -3,6 +3,7 @@
   "type": "dark",
   "author": "Brio.Plus",
   "colorSpaceName": "sRGB",
+  "semanticHighlighting": true,
   "colors": {
     "activityBar.activeFocusBorder": "#fce566",
     "activityBar.background": "#131313",

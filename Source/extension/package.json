@@ -1,54 +1,59 @@
 {
-    "name": "theme-monokai-black-vscode",
-    "displayName": "Monokai Black",
-    "description": "Monokai Black, very Black.",
-    "publisher": "brio-plus",
-    "version": "1.0.1",
-    "engines": {
-        "vscode": "^1.79.0"
-    },
-    "categories": [
-        "Themes"
-    ],
-    "capabilities": {
-        "untrustedWorkspaces": {"supported": true}
-    },
-    "contributes": {
-        "commands": [
-  {
-    "command": "monokai_black.select_theme",
-    "title": "Monokai Black: select theme"
+  "name": "theme-monokai-black-vscode",
+  "displayName": "Monokai Black",
+  "description": "Monokai Black, very Black.",
+  "publisher": "brio-plus",
+  "version": "1.0.2",
+  "engines": {
+    "vscode": "^1.79.0"
   },
-  {
-    "command": "monokai_black.activate_icons",
-    "title": "Monokai Black: activate icons"
-  }
-],
-        "themes": [
-  {
-    "label": "Monokai Black",
-    "uiTheme": "vs-dark",
-    "path": "./themes/Monokai Black.json"
-  }
-],
-        "iconThemes": [
-  {
-    "label": "Monokai Black Icons",
-    "id": "Monokai Black Icons",
-    "path": "./icon-themes/Monokai Black icon-theme.json"
-  }
-]
-    },
-    "extensionKind": ["ui", "workspace"],
-    "homepage": "https://brio.plus",
-    "bugs": {
-        "url": "https://gitlab.com/brio_plus/toolchain/software/monokai-black-vscode"
-    },
-    "galleryBanner": {
-        "color": "#000000",
-        "theme": "dark"
-    },
-    "icon": "icon.png",
-    "keywords": ["beautiful functionality", "focus", "minimal", "icons", "syntax highlighting"],
-    "qna": false
+  "categories": [
+    "Themes"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Monokai Black",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Monokai Black.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "label": "Monokai Black Icons",
+        "id": "Monokai Black Icons",
+        "path": "./icon-themes/Monokai Black icon-theme.json"
+      }
+    ]
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "homepage": "https://brio.plus",
+  "bugs": {
+    "url": "https://gitlab.com/brio_plus/toolchain/software/monokai-black-vscode"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/brio_plus/toolchain/software/monokai-black-vscode.git"
+  },
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "keywords": [
+    "beautiful functionality",
+    "focus",
+    "minimal",
+    "icons",
+    "syntax highlighting"
+  ],
+  "qna": false
 }
