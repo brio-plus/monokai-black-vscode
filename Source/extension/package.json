@@ -1,14 +1,18 @@
 {
   "name": "theme-monokai-black-vscode",
   "displayName": "Monokai Black",
-  "description": "Monokai Black, very Black.",
+  "description": "Monokai Black theme with syntax-highlighted markdown preview.",
   "publisher": "brio-plus",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.79.0"
   },
   "categories": [
     "Themes"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
   ],
   "capabilities": {
     "untrustedWorkspaces": {
@@ -23,13 +27,27 @@
         "path": "./themes/Monokai Black.json"
       }
     ],
-    "iconThemes": [
-      {
-        "label": "Monokai Black Icons",
-        "id": "Monokai Black Icons",
-        "path": "./icon-themes/Monokai Black icon-theme.json"
-      }
-    ]
+    "markdown.previewStyles": [
+      "./media/markdown-preview.css"
+    ],
+    "markdown.markdownItPlugins": true
+  },
+  "scripts": {
+    "compile": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "build": "node esbuild.config.mjs --production",
+    "package": "npm run build && vsce package --no-dependencies",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.79.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "shiki": "^1.0.0"
   },
   "extensionKind": [
     "ui",
@@ -37,11 +55,11 @@
   ],
   "homepage": "https://brio.plus",
   "bugs": {
-    "url": "https://gitlab.com/brio_plus/toolchain/software/monokai-black-vscode"
+    "url": "https://github.com/brio-plus/monokai-black-vscode/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/brio_plus/toolchain/software/monokai-black-vscode.git"
+    "url": "https://github.com/brio-plus/monokai-black-vscode.git"
   },
   "galleryBanner": {
     "color": "#000000",
@@ -52,8 +70,10 @@
     "beautiful functionality",
     "focus",
     "minimal",
-    "icons",
-    "syntax highlighting"
+    "syntax highlighting",
+    "monokai",
+    "dark theme",
+    "markdown preview"
   ],
   "qna": false
 }

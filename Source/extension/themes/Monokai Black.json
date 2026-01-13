@@ -445,7 +445,7 @@
     "terminal.ansiRed": "#fc618d",
     "terminal.ansiWhite": "#f7f1ff",
     "terminal.ansiYellow": "#fce566",
-    "terminal.background": "#363537",
+    "terminal.background": "#000000",
     "terminal.foreground": "#f7f1ff",
     "terminal.selectionBackground": "#f7f1ff26",
     "terminalCommandDecoration.defaultBackground": "#f7f1ff",
