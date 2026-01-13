@@ -19,17 +19,17 @@ ext install brio-plus.theme-monokai-black-vscode
 
 ## Color Palette
 
-| Token | Color | Hex |
-|-------|-------|-----|
-| Background | Black | `#000000` |
+| Token      | Color     | Hex       |
+| ---------- | --------- | --------- |
+| Background | Black     | `#000000` |
 | Foreground | Off-white | `#f7f1ff` |
-| Strings | Yellow | `#fce566` |
-| Keywords | Pink | `#fc618d` |
-| Functions | Green | `#7bd88f` |
-| Comments | Gray | `#69676c` |
-| Types | Cyan | `#5ad4e6` |
-| Constants | Purple | `#948ae3` |
-| Parameters | Orange | `#fd9353` |
+| Strings    | Yellow    | `#fce566` |
+| Keywords   | Pink      | `#fc618d` |
+| Functions  | Green     | `#7bd88f` |
+| Comments   | Gray      | `#69676c` |
+| Types      | Cyan      | `#5ad4e6` |
+| Constants  | Purple    | `#948ae3` |
+| Parameters | Orange    | `#fd9353` |
 
 ## Screenshots
 
@@ -42,6 +42,8 @@ ext install brio-plus.theme-monokai-black-vscode
 ## Markdown Preview
 
 Code blocks in markdown preview render with Monokai Black colors. Open any `.md` file and press `Ctrl+Shift+V` to preview.
+
+![Markdown](images/markdown_test.jpg)
 
 ## License
 
