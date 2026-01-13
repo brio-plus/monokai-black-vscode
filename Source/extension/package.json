@@ -11,9 +11,7 @@
     "Themes"
   ],
   "main": "./dist/extension.js",
-  "activationEvents": [
-    "onLanguage:markdown"
-  ],
+  "activationEvents": [],
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true

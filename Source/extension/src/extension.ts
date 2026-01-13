@@ -130,13 +130,20 @@ function isLanguageSupported(lang: string): boolean {
  * Returns the markdown-it plugin that VS Code will use.
  */
 export function activate(context: vscode.ExtensionContext) {
+  console.log('[Monokai Black] Extension activating...');
+
   // Start initializing the highlighter immediately in the background
-  getHighlighter().catch(err => {
-    console.error('[Monokai Black] Failed to initialize Shiki highlighter:', err);
-  });
+  getHighlighter()
+    .then(() => {
+      console.log('[Monokai Black] Shiki highlighter initialized successfully');
+    })
+    .catch(err => {
+      console.error('[Monokai Black] Failed to initialize Shiki highlighter:', err);
+    });
 
   return {
     extendMarkdownIt(md: any) {
+      console.log('[Monokai Black] extendMarkdownIt called');
       // Store the original fence renderer
       const defaultFence = md.renderer.rules.fence?.bind(md.renderer.rules);
 

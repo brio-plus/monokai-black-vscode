@@ -1,0 +1,270 @@
+{
+	// Code Editor
+	"editor.detectIndentation": true,
+	"editor.dragAndDrop": true,
+	"editor.renderWhitespace": "trailing",
+	"editor.rulers": [
+		250
+	],
+	"editor.wordWrap": "on",
+	"editor.glyphMargin": true,
+	"editor.guides.indentation": true,
+	"editor.cursorStyle": "line",
+	"editor.cursorWidth": 3,
+	"editor.cursorBlinking": "solid",
+	"editor.stickyScroll.maxLineCount": 20,
+	// Fonts
+	"editor.fontFamily": "'Monaspace Argon Var'",
+	"editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
+	//"editor.fontSize": 15,
+	//"editor.lineHeight": 20,
+	//"editor.fontWeight": "normal",
+	//"editor.fontFamily": "'Fira code'",
+	//"editor.fontLigatures": true,
+	"editor.renderControlCharacters": true,
+	"terminal.integrated.fontFamily": "'Monaspace Argon Var'",
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.editor.enablePreview": true,
+	// Files explorer
+	"files.trimTrailingWhitespace": true,
+	"files.trimFinalNewlines": true,
+	"explorer.confirmDragAndDrop": false,
+	// Python
+	"python.languageServer": "Pylance",
+	// Jupyter notebook
+	"workbench.editorAssociations": {
+		"*.ipynb": "jupyter-notebook",
+		"*.md": "vscode.markdown.preview.editor"
+	},
+	"notebook.cellToolbarLocation": {
+		"jupyter-notebook": "left",
+		"default": "left"
+	},
+	//iming_start_m
+	"timeline.pageOnScroll": false,
+	"notebook.showFoldingControls": "always",
+	"notebook.cellToolbarVisibility": "hover",
+	"notebook.cellFocusIndicator": "border",
+	"notebook.lineNumbers": "on",
+	"jupyter.askForKernelRestart": false,
+	// Javascript
+	// Themes colr hack, need to intergate in theme extension monokai black
+	"workbench.colorCustomizations": {
+		"terminal.background": "#000000",
+		"panel.background": "#000000",
+		"panel.border": "#333",
+		"sideBar.background": "#000",
+		"sideBar.border": "#333",
+		"editorGroupHeader.tabsBackground": "#000000",
+		"editorGroupHeader.border": "#000000",
+		"editorGroupHeader.tabsBorder": "#000000",
+		"tab.activeBackground": "#222",
+		"tab.inactiveBackground": "#000000",
+		"tab.border": "#000000",
+		"titleBar.activeBackground": "#000000",
+		"titleBar.activeForeground": "#aaa",
+		"titleBar.inactiveBackground": "#000",
+		"titleBar.inactiveForeground": "#333",
+		"titleBar.border": "#333",
+		"notebook.cellEditorBackground": "#000",
+		"notebook.editorBackground": "#000000",
+		"notebook.cellBorderColor": "#333",
+		"notebook.outputContainerBackgroundColor": "#000",
+		"editorOverviewRuler.border": "#000000"
+	},
+	"markdownShiki.theme": "monokai",
+	//Git
+	"git.confirmSync": false,
+	"git.postCommitCommand": "push",
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"notebook.output.wordWrap": true,
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"window.menuBarVisibility": "classic",
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.stickyScroll.enabled": true,
+	"notebook.stickyScroll.enabled": true,
+	"python.autoComplete.extraPaths": [
+		"c:\\Users\\Yann\\.vscode\\extensions\\continue.continue-0.9.4-win32-x64"
+	],
+	"python.analysis.extraPaths": [
+		"c:\\Users\\Yann\\.vscode\\extensions\\continue.continue-0.9.4-win32-x64"
+	],
+	"remote.SSH.defaultExtensions": [
+		"gitpod.gitpod-remote-ssh"
+	],
+	"remote.SSH.remotePlatform": {
+		"yannli-wsengconduitaias-6xthb3j2pof.vss.gitpod.io": "linux",
+		"yannli-wsengconduitaias-0tufq8qq3lo.vss.gitpod.io": "linux",
+		"yannli-wsengconduitaias-9wiyyw9d0zb.vss.gitpod.io": "linux",
+		"yannli-veyderwsengcondu-xjof6izw3yw.vss.gitpod.io": "linux",
+		"yannli-wsengconduitaias-d3hpfgqqag5.vss.gitpod.io": "linux",
+		"brioplusknowledg-x2llm-ibzyg4rnmey.vss.gitpod.io": "linux",
+		"runpod-gpu": "linux"
+	},
+	"redhat.telemetry.enabled": false,
+	"material-icon-theme.folders.theme": "classic",
+	"material-icon-theme.hidesExplorerArrows": false,
+	"material-icon-theme.activeIconPack": "angular",
+	"material-icon-theme.folders.color": "#999",
+	"material-icon-theme.files.color": "#999",
+	"workbench.iconTheme": "material-icon-theme",
+	"gitlens.views.branches.showBranchComparison": false,
+	"git.enableSmartCommit": true,
+	"diffEditor.codeLens": true,
+	"terminal.integrated.gpuAcceleration": "on",
+	"workbench.editor.empty.hint": "hidden",
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"gitlab.debug": true,
+	"gitlab.aiAssistedCodeSuggestions.preferredAccount": "",
+	"gitlab.ls.debug": true,
+	"diffEditor.renderSideBySide": true,
+	"editor.inlineSuggest.suppressSuggestions": true,
+	"continue.telemetryEnabled": false,
+	"notebook.experimental.variablesView": true,
+	"gitlab.aiAssistedCodeSuggestions.enabled": false,
+	"diffEditor.hideUnchangedRegions.enabled": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"workbench.sideBar.location": "right",
+	"window.title": "${dirty}${rootName} / ${activeEditorShort}${separator}${separator}${profileName}${separator}${appName}",
+	"remoteHub.commitDirectlyWarning": "off",
+	"codium.codeCompletion.enable": true,
+	"githubPullRequests.createOnPublishBranch": "never",
+	"files.exclude": {
+		"**/.git": false
+	},
+	"terminal.integrated.scrollback": 30000,
+	"database-client.autoSync": true,
+	"database-client.telemetry.usesOnlineServices": false,
+	"workbench.editor.centeredLayoutAutoResize": false,
+	"deno.enable": false,
+	"editor.fastScrollSensitivity": 10,
+	"editor.mouseWheelScrollSensitivity": 4,
+	"editor.smoothScrolling": true,
+	"workbench.list.mouseWheelScrollSensitivity": 4,
+	"workbench.list.smoothScrolling": true,
+	"workbench.list.fastScrollSensitivity": 10,
+	"workbench.editor.wrapTabs": true,
+	"workbench.editor.scrollToSwitchTabs": true,
+	"chat.editing.alwaysSaveWithGeneratedChanges": true,
+	"notebook.variablesView": true,
+	"notebook.output.scrolling": true,
+	"taskExplorer.enabledTasks": {
+		"ant": false,
+		"composer": false,
+		"gradle": false,
+		"grunt": false,
+		"gulp": false,
+		"maven": false,
+		"perl": false,
+		"powershell": false,
+		"ruby": false,
+		"tsc": false,
+		"bash": false
+	},
+	"taskExplorer.expanded": {
+		"lastTasks": false
+	},
+	"taskExplorer.groupMaxLevel": 2,
+	"notebook.editorOptionsCustomizations": {
+		"editor.tabSize": 4,
+		"editor.indentSize": 4,
+		"editor.insertSpaces": false
+	},
+	"notebook.outline.showCodeCellSymbols": false,
+	"roo-cline.allowedCommands": [
+		"git log",
+		"git diff",
+		"git show",
+		"npm test",
+		"npm install",
+		"tsc"
+	],
+	"accessibility.voice.speechLanguage": "en-US",
+	"accessibility.voice.speechTimeout": 0,
+	"explorer.openEditors.visible": 20,
+	"workbench.editor.showTabs": "single",
+	"workbench.secondarySideBar.showLabels": false,
+	"github.copilot.selectedCompletionModel": "",
+	"geminicodeassist.project": "",
+	"github.copilot.chat.codesearch.enabled": true,
+	"github.copilot.chat.completionContext.typescript.mode": "on",
+	"github.copilot.chat.languageContext.typescript.enabled": true,
+	"github.copilot.chat.search.semanticTextResults": true,
+	"github.copilot.chat.agent.runTasks": true,
+	"github.copilot.chat.agent.thinkingTool": true,
+	"github.copilot.chat.languageContext.fix.typescript.enabled": true,
+	"github.copilot.chat.startDebugging.enabled": true,
+	"editor.formatOnSave": true,
+	"git.openRepositoryInParentFolders": "never",
+	"terminal.integrated.enableMultiLinePasteWarning": "never",
+	"idf.hasWalkthroughBeenShown": true,
+	"idf.pythonInstallPath": "C:\\Users\\Yann\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
+	"idf.gitPathWin": "C:\\Users\\Yann\\.espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
+	"idf.espIdfPathWin": "C:\\Users\\Yann\\esp\\v5.4.1\\esp-idf",
+	"idf.toolsPathWin": "C:\\Users\\Yann\\.espressif",
+	"python.analysis.typeCheckingMode": "basic",
+	"python.analysis.typeEvaluation.strictParameterNoneValue": false,
+	"git.allowForcePush": true,
+	"biome.suggestInstallingGlobally": false,
+	"pgsql.serverGroups": [
+		{
+			"name": "Servers",
+			"id": "F8BEAD4E-E3D3-445A-A38A-620000611935",
+			"isDefault": true
+		}
+	],
+	"github.copilot.nextEditSuggestions.enabled": true,
+	"kilo-code.allowedCommands": [
+		"git log",
+		"git diff",
+		"git show",
+		"npm test",
+		"npm install",
+		"tsc"
+	],
+	"kilo-code.deniedCommands": [],
+	"github.copilot.enable": {
+		"*": false,
+		"plaintext": false,
+		"markdown": false,
+		"scminput": false
+	},
+	"roo-cline.deniedCommands": [],
+	"[dockercompose]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"editor.autoIndent": "advanced",
+		"editor.quickSuggestions": {
+			"other": true,
+			"comments": false,
+			"strings": true
+		},
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"[github-actions-workflow]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"chat.mcp.gallery.enabled": true,
+	"claudeCode.preferredLocation": "panel",
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"gitlens.ai.model": "vscode",
+	"gitlens.ai.vscode.model": "copilot:gpt-4.1",
+	"editor.minimap.enabled": false,
+	"workbench.colorTheme": "Monokai Black",
+}
