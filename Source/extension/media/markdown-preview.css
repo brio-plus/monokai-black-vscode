@@ -6,7 +6,7 @@
 /* Code block container styling */
 .vscode-body pre {
   background-color: #000000;
-  border: 1px solid #363537;
+  border: 1px solid #333333;
   border-radius: 4px;
   padding: 16px;
   overflow-x: auto;
@@ -18,7 +18,8 @@
   background-color: #1a1a1a;
   padding: 2px 6px;
   border-radius: 3px;
-  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-family: 'Monaspace Argon Var', 'Monaspace Argon', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-feature-settings: 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08';
 }
 
 /* Code inside pre blocks (fenced code) - reset inline styles */
@@ -31,15 +32,17 @@
 /* Shiki highlighted code block overrides */
 .vscode-body pre.shiki {
   background-color: #000000 !important;
-  border: 1px solid #363537;
+  border: 1px solid #333333;
   border-radius: 4px;
   padding: 16px;
   margin: 16px 0;
 }
 
-/* Code block text styling */
+/* Code block text styling - Monaspace Argon with ligatures */
+.vscode-body pre code,
 .vscode-body pre.shiki code {
-  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-family: 'Monaspace Argon Var', 'Monaspace Argon', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-feature-settings: 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08';
   font-size: 14px;
   line-height: 1.5;
 }
@@ -47,6 +50,7 @@
 /* Ensure Shiki spans inherit proper styling */
 .vscode-body pre.shiki code span {
   font-family: inherit;
+  font-feature-settings: inherit;
 }
 
 /* Line highlighting (if used) */

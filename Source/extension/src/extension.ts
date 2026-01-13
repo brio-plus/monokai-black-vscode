@@ -8,6 +8,9 @@ import monokaiBlackTheme from '../themes/monokai-black-shiki.json';
 let highlighter: Highlighter | null = null;
 let highlighterPromise: Promise<Highlighter> | null = null;
 
+// Theme name to match
+const MONOKAI_BLACK_THEME_NAME = 'Monokai Black';
+
 // Languages to support - common programming languages
 const SUPPORTED_LANGUAGES: BundledLanguage[] = [
   'javascript',
@@ -68,6 +71,14 @@ const LANGUAGE_ALIASES: Record<string, string> = {
   'ps1': 'powershell',
   'ps': 'powershell'
 };
+
+/**
+ * Check if the current VS Code color theme is Monokai Black.
+ */
+function isMonokaiBlackThemeActive(): boolean {
+  const currentTheme = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
+  return currentTheme === MONOKAI_BLACK_THEME_NAME;
+}
 
 /**
  * Lazily initialize the Shiki highlighter.
@@ -160,6 +171,18 @@ export function activate(context: vscode.ExtensionContext) {
         const lang = info.split(/\s+/)[0] || '';
         const code = token.content;
 
+        // Only apply Monokai Black highlighting if the theme is active
+        if (!isMonokaiBlackThemeActive()) {
+          // Theme not active - use default renderer
+          if (defaultFence) {
+            return defaultFence(tokens, idx, options, env, self);
+          }
+          // Ultimate fallback without Monokai styling
+          const escaped = escapeHtml(code);
+          const langClass = lang ? ` class="language-${escapeHtml(lang)}"` : '';
+          return `<pre><code${langClass}>${escaped}</code></pre>`;
+        }
+
         // Try to highlight with Shiki if the highlighter is ready
         if (highlighter && lang) {
           try {
@@ -182,7 +205,7 @@ export function activate(context: vscode.ExtensionContext) {
           return defaultFence(tokens, idx, options, env, self);
         }
 
-        // Ultimate fallback: render with basic styling
+        // Ultimate fallback: render with basic Monokai Black styling
         const escaped = escapeHtml(code);
         const langClass = lang ? ` class="language-${escapeHtml(lang)}"` : '';
         return `<pre class="shiki" style="background-color:#000000;color:#f7f1ff;padding:16px;border-radius:4px;overflow-x:auto;"><code${langClass}>${escaped}</code></pre>`;
