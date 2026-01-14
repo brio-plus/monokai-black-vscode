@@ -76,8 +76,10 @@ const LANGUAGE_ALIASES: Record<string, string> = {
  * Check if the current VS Code color theme is Monokai Black.
  */
 function isMonokaiBlackThemeActive(): boolean {
-  const currentTheme = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
-  return currentTheme === MONOKAI_BLACK_THEME_NAME;
+  const currentTheme = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
+  const isActive = currentTheme.toLowerCase().includes('monokai black');
+  console.log(`[Monokai Black] Theme check: "${currentTheme}" -> isActive: ${isActive}`);
+  return isActive;
 }
 
 /**
