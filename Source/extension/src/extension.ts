@@ -11,26 +11,6 @@ let highlighterPromise: Promise<Highlighter> | null = null;
 // Theme name to match
 const MONOKAI_BLACK_THEME_NAME = 'Monokai Black';
 
-// Global state key for tracking first-time setup
-const MATERIAL_ICON_SETTINGS_APPLIED_KEY = 'monokaiBlack.materialIconSettingsApplied';
-
-// Material Icon Theme settings to apply
-const MATERIAL_ICON_SETTINGS: Record<string, any> = {
-  'workbench.iconTheme': 'material-icon-theme',
-  'material-icon-theme.folders.theme': 'classic',
-  'material-icon-theme.hidesExplorerArrows': false,
-  'material-icon-theme.activeIconPack': 'angular',
-  'material-icon-theme.folders.color': '#999',
-  'material-icon-theme.files.color': '#999'
-};
-
-// Monaspace Argon font settings
-const MONASPACE_FONT_SETTINGS: Record<string, any> = {
-  'editor.fontFamily': "'Monaspace Argon Var'",
-  'terminal.integrated.fontFamily': "'Monaspace Argon Var'",
-  'editor.fontLigatures': "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'"
-};
-
 // Languages to support - common programming languages
 const SUPPORTED_LANGUAGES: BundledLanguage[] = [
   'javascript',
@@ -157,50 +137,10 @@ function isLanguageSupported(lang: string): boolean {
 }
 
 /**
- * Apply a set of settings to user configuration.
- * Only applies settings that haven't been explicitly set by the user (unless force=true).
- */
-async function applySettings(settings: Record<string, any>, force: boolean = false): Promise<{ applied: string[], skipped: string[] }> {
-  const applied: string[] = [];
-  const skipped: string[] = [];
-
-  for (const [key, value] of Object.entries(settings)) {
-    const config = vscode.workspace.getConfiguration();
-    const inspection = config.inspect(key);
-
-    // Check if the setting has a user-level value
-    const hasUserValue = inspection?.globalValue !== undefined;
-
-    if (force || !hasUserValue) {
-      await config.update(key, value, vscode.ConfigurationTarget.Global);
-      applied.push(key);
-    } else {
-      skipped.push(key);
-    }
-  }
-
-  return { applied, skipped };
-}
-
-/**
- * Apply Material Icon Theme settings to user configuration.
- */
-async function applyMaterialIconSettings(force: boolean = false): Promise<{ applied: string[], skipped: string[] }> {
-  return applySettings(MATERIAL_ICON_SETTINGS, force);
-}
-
-/**
- * Apply Monaspace Argon font settings to user configuration.
- */
-async function applyFontSettings(force: boolean = false): Promise<{ applied: string[], skipped: string[] }> {
-  return applySettings(MONASPACE_FONT_SETTINGS, force);
-}
-
-/**
  * Extension activation function.
  * Returns the markdown-it plugin that VS Code will use.
  */
-export function activate(context: vscode.ExtensionContext) {
+export function activate() {
   console.log('[Monokai Black] Extension activating...');
 
   // Start initializing the highlighter immediately in the background
@@ -211,59 +151,6 @@ export function activate(context: vscode.ExtensionContext) {
     .catch(err => {
       console.error('[Monokai Black] Failed to initialize Shiki highlighter:', err);
     });
-
-  // Register the command to apply Material Icon Theme settings
-  const applyIconSettingsCommand = vscode.commands.registerCommand(
-    'monokaiBlack.applyMaterialIconSettings',
-    async () => {
-      const result = await applyMaterialIconSettings(true);
-      if (result.applied.length > 0) {
-        vscode.window.showInformationMessage(
-          `Monokai Black: Applied ${result.applied.length} Material Icon Theme settings.`
-        );
-      } else {
-        vscode.window.showInformationMessage(
-          'Monokai Black: All Material Icon Theme settings are already configured.'
-        );
-      }
-    }
-  );
-  context.subscriptions.push(applyIconSettingsCommand);
-
-  // Register the command to apply Monaspace Argon font settings
-  const applyFontSettingsCommand = vscode.commands.registerCommand(
-    'monokaiBlack.applyFontSettings',
-    async () => {
-      const result = await applyFontSettings(true);
-      if (result.applied.length > 0) {
-        vscode.window.showInformationMessage(
-          `Monokai Black: Applied Monaspace Argon font settings (${result.applied.length} settings).`
-        );
-      } else {
-        vscode.window.showInformationMessage(
-          'Monokai Black: Font settings are already configured.'
-        );
-      }
-    }
-  );
-  context.subscriptions.push(applyFontSettingsCommand);
-
-  // Check if this is the first activation (settings never applied)
-  const settingsApplied = context.globalState.get<boolean>(MATERIAL_ICON_SETTINGS_APPLIED_KEY, false);
-
-  if (!settingsApplied && isMonokaiBlackThemeActive()) {
-    // First time activation with Monokai Black theme - apply settings automatically
-    applyMaterialIconSettings(false).then(result => {
-      if (result.applied.length > 0) {
-        console.log('[Monokai Black] Auto-applied Material Icon settings:', result.applied);
-        vscode.window.showInformationMessage(
-          `Monokai Black: Configured Material Icon Theme with ${result.applied.length} settings.`
-        );
-      }
-      // Mark as applied so we don't do this again
-      context.globalState.update(MATERIAL_ICON_SETTINGS_APPLIED_KEY, true);
-    });
-  }
 
   return {
     extendMarkdownIt(md: any) {

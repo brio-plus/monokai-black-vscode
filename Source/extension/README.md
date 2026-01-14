@@ -20,29 +20,43 @@ ext install brio-plus.theme-monokai-black-vscode
 
 ## Recommended Setup
 
-### Material Icon Theme (Required)
+For the complete Monokai Black experience, we recommend:
 
-This extension requires [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) for the best experience. VS Code will prompt you to install it automatically.
+### 1. Monaspace Argon Font
 
-On first activation, Monokai Black configures Material Icon Theme with a clean, minimal appearance:
-- Folder theme: Classic
-- Icon colors: Gray (`#999`)
-- Angular icon pack
-
-To re-apply these settings anytime: `Ctrl+Shift+P` → **Monokai Black: Apply Material Icon Theme Settings**
-
-### Monaspace Argon Font (Recommended)
-
-For the complete Monokai Black experience, we strongly recommend installing **Monaspace Argon Var** - a beautiful monospace font with ligatures.
-
+A beautiful monospace font with ligatures:
 1. Download from [Monaspace Releases](https://github.com/githubnext/monaspace/releases/latest)
 2. Install **monaspace-variable** on your system
-3. Run `Ctrl+Shift+P` → **Monokai Black: Apply Monaspace Argon Font Settings**
 
-This configures:
-- Editor font: Monaspace Argon Var
-- Terminal font: Monaspace Argon Var
-- Ligatures: All stylistic sets enabled
+### 2. Material Icon Theme
+
+Clean, minimal file icons:
+1. Install [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) from the VS Code Marketplace
+
+### 3. User Settings
+
+Open your `settings.json` (`Ctrl+Shift+P` → "Preferences: Open User Settings (JSON)") and add:
+
+```json
+{
+  // Color theme
+  "workbench.colorTheme": "Monokai Black",
+
+  // Fonts
+  "editor.fontFamily": "'Monaspace Argon Var'",
+  "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
+  "editor.renderControlCharacters": true,
+  "terminal.integrated.fontFamily": "'Monaspace Argon Var'",
+
+  // Explorer icons
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.theme": "classic",
+  "material-icon-theme.hidesExplorerArrows": false,
+  "material-icon-theme.activeIconPack": "angular",
+  "material-icon-theme.folders.color": "#999",
+  "material-icon-theme.files.color": "#999"
+}
+```
 
 ## Color Palette
 

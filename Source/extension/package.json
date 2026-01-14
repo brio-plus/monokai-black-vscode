@@ -10,9 +10,6 @@
   "categories": [
     "Themes"
   ],
-  "extensionDependencies": [
-    "PKief.material-icon-theme"
-  ],
   "main": "./dist/extension.js",
   "activationEvents": [],
   "capabilities": {
@@ -26,16 +23,6 @@
         "label": "Monokai Black",
         "uiTheme": "vs-dark",
         "path": "./themes/Monokai Black.json"
-      }
-    ],
-    "commands": [
-      {
-        "command": "monokaiBlack.applyMaterialIconSettings",
-        "title": "Monokai Black: Apply Material Icon Theme Settings"
-      },
-      {
-        "command": "monokaiBlack.applyFontSettings",
-        "title": "Monokai Black: Apply Monaspace Argon Font Settings"
       }
     ],
     "markdown.previewStyles": [
