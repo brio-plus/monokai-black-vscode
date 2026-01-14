@@ -1,0 +1,32 @@
+# Source files (only dist is needed)
+src/**
+*.ts
+tsconfig.json
+esbuild.config.mjs
+
+# Development files
+.github/**
+node_modules/**
+
+# Test files
+test/**
+
+# Build artifacts (except dist)
+*.vsix
+
+# Git
+.git/**
+.gitignore
+
+# Editor configs
+.vscode/**
+
+# Keep these files:
+# - dist/extension.js (bundled code)
+# - themes/*.json (VS Code theme + Shiki theme)
+# - media/*.css (preview styles)
+# - icon.png (extension icon)
+# - README.md
+# - CHANGELOG.md
+# - LICENSE.txt
+# - package.json

@@ -1,0 +1,107 @@
+name: Publish Extension
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.version_check.outputs.should_publish }}
+      new_version: ${{ steps.version_check.outputs.new_version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version change
+        id: version_check
+        run: |
+          # Get current version from package.json
+          CURRENT_VERSION=$(node -p "require('./Source/extension/package.json').version")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Get latest tag (if any)
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          LATEST_VERSION=${LATEST_TAG#v}
+          echo "Latest tag version: $LATEST_VERSION"
+
+          # Compare versions
+          SHOULD_PUBLISH=$(node -e "
+            const current = '$CURRENT_VERSION'.split('.').map(Number);
+            const latest = '$LATEST_VERSION'.split('.').map(Number);
+            let shouldPublish = false;
+            for (let i = 0; i < 3; i++) {
+              const c = current[i] || 0;
+              const l = latest[i] || 0;
+              if (c > l) { shouldPublish = true; break; }
+              if (c < l) { break; }
+            }
+            console.log(shouldPublish ? 'true' : 'false');
+          ")
+
+          echo "should_publish=$SHOULD_PUBLISH" >> $GITHUB_OUTPUT
+          echo "new_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Should publish: $SHOULD_PUBLISH"
+
+  publish:
+    needs: check-version
+    if: needs.check-version.outputs.should_publish == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Source/extension/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Source/extension
+        run: npm ci
+
+      - name: Build extension
+        working-directory: Source/extension
+        run: npm run build
+
+      - name: Package extension
+        working-directory: Source/extension
+        run: npx vsce package --no-dependencies
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monokai-black-vsix-release
+          path: Source/extension/*.vsix
+          retention-days: 30
+
+      - name: Publish to VS Code Marketplace
+        working-directory: Source/extension
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx vsce publish --no-dependencies
+
+      - name: Create Git tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a "v${{ needs.check-version.outputs.new_version }}" -m "Release v${{ needs.check-version.outputs.new_version }}"
+          git push origin "v${{ needs.check-version.outputs.new_version }}"
+
+  skip-publish:
+    needs: check-version
+    if: needs.check-version.outputs.should_publish != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip publish
+        run: |
+          echo "Skipping publish - version has not changed"
+          echo "Current version matches or is lower than latest tag"
