@@ -1,11 +1,11 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output (extension internal)
+Source/extension/dist/
 
-# Package files
-*.vsix
+# Keep build folder with VSIX for distribution
+# build/ is NOT ignored - we want to keep the VSIX in the repo
 
 # Editor
 .vscode/
