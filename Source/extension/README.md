@@ -8,7 +8,6 @@ A true black Monokai theme for VS Code. Pure `#000000` backgrounds, Monokai-insp
 - **Monokai palette** optimized for readability
 - **Markdown preview** with syntax-highlighted code blocks (Shiki)
 - **Semantic highlighting** support
-- **Auto-configured** Material Icon Theme integration
 
 ## Install
 
@@ -75,16 +74,16 @@ Open your `settings.json` (`Ctrl+Shift+P` → "Preferences: Open User Settings (
 ## Screenshots
 
 **Python**
-![Python](images/python_test.jpg)
+![Python](https://raw.githubusercontent.com/brio-plus/monokai-black-vscode/main/Source/extension/images/python_test.png)
 
 **TypeScript**
-![TypeScript](images/typescript_test.jpg)
+![TypeScript](https://raw.githubusercontent.com/brio-plus/monokai-black-vscode/main/Source/extension/images/typescript_test.png)
 
 ## Markdown Preview
 
 Code blocks in markdown preview render with Monokai Black colors. Open any `.md` file and press `Ctrl+Shift+V` to preview.
 
-![Markdown](images/markdown_test.jpg)
+![Markdown](https://raw.githubusercontent.com/brio-plus/monokai-black-vscode/main/Source/extension/images/markdown_test.png)
 
 ## License
 
