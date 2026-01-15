@@ -3,6 +3,9 @@ import { createHighlighter, type Highlighter, type BundledLanguage } from 'shiki
 // Import the custom Monokai Black theme
 import monokaiBlackTheme from '../themes/monokai-black-shiki.json';
 
+// Import custom language grammars not bundled with Shiki
+import typeqlGrammar from '../themes/typeql.tmLanguage.json';
+
 // Singleton highlighter instance
 let highlighter: Highlighter | null = null;
 let highlighterPromise: Promise<Highlighter> | null = null;
@@ -65,8 +68,18 @@ const LANGUAGE_ALIASES: Record<string, string> = {
   'htm': 'html',
   'jsonc': 'json',
   'ps1': 'powershell',
-  'ps': 'powershell'
+  'ps': 'powershell',
+  'tql': 'typeql'
 };
+
+// Custom languages with their TextMate grammars (not bundled with Shiki)
+const CUSTOM_LANGUAGES = [
+  {
+    ...typeqlGrammar,
+    name: 'typeql',
+    scopeName: 'source.tql'
+  }
+];
 
 /**
  * Lazily initialize the Shiki highlighter.
@@ -83,7 +96,7 @@ async function getHighlighter(): Promise<Highlighter> {
 
   highlighterPromise = createHighlighter({
     themes: [monokaiBlackTheme as any],
-    langs: SUPPORTED_LANGUAGES
+    langs: [...SUPPORTED_LANGUAGES, ...CUSTOM_LANGUAGES as any]
   }).then(h => {
     highlighter = h;
     return h;

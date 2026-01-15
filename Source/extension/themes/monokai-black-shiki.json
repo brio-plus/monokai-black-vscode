@@ -390,6 +390,13 @@
       }
     },
     {
+      "scope": "variable.parameter.tql",
+      "settings": {
+        "fontStyle": "normal",
+        "foreground": "#5ad4e6"
+      }
+    },
+    {
       "scope": [
         "variable.language",
         "variable.parameter.function.language.special.self.python",
