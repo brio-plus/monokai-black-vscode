@@ -1,20 +1,16 @@
-# gastown v0.2.5 - Component Breakdown
+# markdown_with_codeblocks
 
-## 1. Critical Module Analysis
+typeql:
 
-### internal/polecat - Ephemeral Worker Management
+```typeql
+match
+  $x isa user;
+  friendship ($x, $_);
 
-**Purpose**: Manage polecat lifecycle (spawn, work, cleanup)
+define parentship relates parent, relates child;
+```
 
-**Key Files**:
-| File | Lines | Description |
-|------|-------|-------------|
-| manager.go | ~990 | Core polecat lifecycle |
-| types.go | ~100 | State/type definitions |
-| namepool.go | ~200 | Name allocation |
-| cleanup.go | ~150 | Cleanup status tracking |
-
-**Key Abstractions**:
+go:
 
 ```go
 type Manager struct {
@@ -41,6 +37,56 @@ const (
     StateActive
 )
 ```
+
+python:
+
+```python
+def step(self, action: str) -> Tuple[str, bool, bool, bool, bool]:
+    action_type, argument = parse_action(action)
+
+    if action_type == 'Finish':
+        self.answer = argument
+        if self.is_correct():
+            observation = 'Answer is CORRECT'
+        else:
+            observation = 'Answer is INCORRECT'
+        self.terminated = True
+```
+
+typescript:
+
+```typescript
+export const ReactReduxContext = /*#__PURE__*/ new Proxy(
+  {} as Context<ReactReduxContextValue>,
+  /*#__PURE__*/ new Proxy<ProxyHandler<Context<ReactReduxContextValue>>>(
+    {},
+    {
+      get(_, handler) {
+        const target = getContext();
+        const ContextKey = Symbol.for(`react-redux-context-${ReactVersion}`);
+        // @ts-ignore
+        return (_target, ...args) => Reflect[handler](target, ...args);
+      },
+    }
+  )
+);
+```
+
+## 1. Critical Module Analysis
+
+### internal/polecat - Ephemeral Worker Management
+
+**Purpose**: Manage polecat lifecycle (spawn, work, cleanup)
+
+**Key Files**:
+| File | Lines | Description |
+|------|-------|-------------|
+| manager.go | ~990 | Core polecat lifecycle |
+| types.go | ~100 | State/type definitions |
+| namepool.go | ~200 | Name allocation |
+| cleanup.go | ~150 | Cleanup status tracking |
+
+**Key Abstractions**:
 
 **Critical Operations**:
 
@@ -244,28 +290,28 @@ func (g *Git) CountCommitsBehind(remoteBranch string) (int, error)
 ### Lines of Code by Package
 
 | Package | LOC (approx) | Test Coverage |
-|---------|--------------|---------------|
-| polecat | 1,500 | Good |
-| swarm | 600 | Good |
-| beads | 800 | Moderate |
-| git | 700 | Good |
-| witness | 500 | Moderate |
-| mayor | 600 | Moderate |
-| mail | 500 | Good |
-| rig | 800 | Good |
-| config | 500 | Good |
-| cmd | 5,000+ | CLI tests |
-| tui | 2,000 | UI tests |
+| ------- | ------------ | ------------- |
+| polecat | 1,500        | Good          |
+| swarm   | 600          | Good          |
+| beads   | 800          | Moderate      |
+| git     | 700          | Good          |
+| witness | 500          | Moderate      |
+| mayor   | 600          | Moderate      |
+| mail    | 500          | Good          |
+| rig     | 800          | Good          |
+| config  | 500          | Good          |
+| cmd     | 5,000+       | CLI tests     |
+| tui     | 2,000        | UI tests      |
 
 ### Complexity Assessment
 
-| Module | Complexity | Notes |
-|--------|------------|-------|
-| polecat/manager.go | Medium | Well-structured |
-| swarm/manager.go | Low | Clean state machine |
-| beads/beads.go | Low | CLI wrapper |
-| git/git.go | Medium | External tool calls |
-| cmd/*.go | High | Many CLI commands |
+| Module             | Complexity | Notes               |
+| ------------------ | ---------- | ------------------- |
+| polecat/manager.go | Medium     | Well-structured     |
+| swarm/manager.go   | Low        | Clean state machine |
+| beads/beads.go     | Low        | CLI wrapper         |
+| git/git.go         | Medium     | External tool calls |
+| cmd/\*.go          | High       | Many CLI commands   |
 
 ## 3. Critical Code Paths
 
@@ -344,53 +390,56 @@ internal/config/agents.go:     // TODO: validate agent config
 ### Recently Refactored
 
 From CHANGELOG:
+
 - `prime.go` split from 1833 lines into modules
 - `beads/mail` modules split for maintainability
 
 ### External Dependencies
 
-| Dependency | Risk | Mitigation |
-|------------|------|------------|
-| beads CLI | External tool | Version pinned (0.44.0+) |
-| tmux | Optional | Minimal mode works without |
-| Git | System tool | Well-tested, stable |
+| Dependency | Risk          | Mitigation                 |
+| ---------- | ------------- | -------------------------- |
+| beads CLI  | External tool | Version pinned (0.44.0+)   |
+| tmux       | Optional      | Minimal mode works without |
+| Git        | System tool   | Well-tested, stable        |
 
 ## 5. Merlin-Relevant Modules
 
 ### Directly Applicable
 
-| Module | Merlin Use | Integration Effort |
-|--------|------------|-------------------|
-| polecat | Agent lifecycle | Low (patterns) |
-| swarm | Swarm orchestration | Medium (wrapper) |
-| git | Worktree isolation | Low (portable) |
+| Module  | Merlin Use          | Integration Effort |
+| ------- | ------------------- | ------------------ |
+| polecat | Agent lifecycle     | Low (patterns)     |
+| swarm   | Swarm orchestration | Medium (wrapper)   |
+| git     | Worktree isolation  | Low (portable)     |
 
 ### Partially Applicable
 
-| Module | Merlin Use | Integration Effort |
-|--------|------------|-------------------|
-| beads | Work tracking | High (schema diff) |
-| mail | Event bus | Medium (protocol) |
-| witness | Monitoring | Medium (adaptation) |
+| Module  | Merlin Use    | Integration Effort  |
+| ------- | ------------- | ------------------- |
+| beads   | Work tracking | High (schema diff)  |
+| mail    | Event bus     | Medium (protocol)   |
+| witness | Monitoring    | Medium (adaptation) |
 
 ### Not Applicable
 
-| Module | Reason |
-|--------|--------|
-| tui | UI-specific |
-| tmux | Dev tooling |
-| web | Dashboard UI |
+| Module | Reason       |
+| ------ | ------------ |
+| tui    | UI-specific  |
+| tmux   | Dev tooling  |
+| web    | Dashboard UI |
 
 ## 6. Integration Extraction Points
 
 ### Extractable Patterns
 
 1. **Worktree Manager**
+
    - Git worktree operations
    - Branch naming conventions
    - Cleanup status tracking
 
 2. **State Machine**
+
    - Explicit state transitions
    - Terminal state handling
    - ZFC-compliant state derivation
@@ -410,7 +459,7 @@ class WorktreeManager {
   }
 
   async remove(path: string, force: boolean): Promise<void> {
-    const flag = force ? '--force' : '';
+    const flag = force ? "--force" : "";
     await exec(`git worktree remove ${flag} ${path}`);
   }
 
