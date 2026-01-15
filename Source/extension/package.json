@@ -3,7 +3,7 @@
   "displayName": "Monokai Black",
   "description": "Monokai Black theme with syntax-highlighted markdown preview.",
   "publisher": "brio-plus",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "engines": {
     "vscode": "^1.79.0"
   },
@@ -11,7 +11,9 @@
     "Themes"
   ],
   "main": "./dist/extension.js",
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
@@ -48,8 +50,8 @@
     "shiki": "^1.0.0"
   },
   "extensionKind": [
-    "ui",
-    "workspace"
+    "workspace",
+    "ui"
   ],
   "homepage": "https://brio.plus",
   "bugs": {
