@@ -1,0 +1,139 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "TypeQL",
+	"file_extensions": [
+		"tql"
+	],
+	"patterns": [
+		{
+			"include": "#storage"
+		},
+		{
+			"include": "#keyword"
+		},
+		{
+			"include": "#support"
+		},
+		{
+			"include": "#string-double-quoted"
+		},	
+		{
+			"include": "#string-single-quoted"
+		},	
+		{
+			"include": "#escaped-char"
+		},
+		{
+			"include": "#constant"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#comment"
+		}
+	],
+	"repository": {
+		"storage": {
+			"patterns": [
+				{
+					"name": "storage.type.tql",
+					"match": "\\b(entity|attribute|relation|role|struct)(?!-)\\b"
+				},
+				{
+					"name": "storage.modifier.tql",
+					"match": "\\b(string|double|boolean|datetime|datetime-tz|date|duration|decimal|integer)(?!-)\\b"
+				}
+			]
+		},
+		"keyword": {
+			"patterns": [
+				{
+					"name": "keyword.control.tql",
+					"match": "\\b(define|undefine|redefine|match|fetch|insert|put|update|delete|offset|limit|group|sort|select|require|reduce|distinct|asc|desc|abstract|as|iid|type|isa|isa!|sub|sub!|owns|has|plays|relates|value|regex|fun|return|let|in|struct|of|from|first|last|check)(?!-)\\b"
+				},
+				{
+					"name": "keyword.operator.words.tql",
+					"match": "\\b(or|not|try|like|is|contains)\\b"
+				},
+				{
+					"name": "keyword.operator.characters.tql",
+					"match": ">=|<=|>|<|==|=|!=|\\+|-|\\*|/|\\^|%|\\.\\.|->|\\?"
+				},
+				{
+					"name": "keyword.annotations.tql",
+					"match": "(@abstract|@cascade|@distinct|@key|@independent|@unique|@card|@range|@regex|@subkey|@values)\\b"
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"name":"support.function.tql",
+					"match":"\\b(count|sum|max|min|mean|median|std|list|abs|ceil|floor|round|length|check|first|last)(?!-)\\b"
+				}
+			]
+		},
+		"string-double-quoted": {
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"include": "#escaped-char"
+				}
+			],
+			"name": "string.tql"
+		},
+		"string-single-quoted": {
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"include": "#escaped-char"
+				}
+			],
+			"name": "string.tql"
+		},
+		"escaped-char" : {
+			"name": "constant.character.escape.tql",
+			"patterns": [
+				{
+					"match": "\\\\(x\\h{2}|n|r|t|0|\"|''|\\\\|u\\{\\h{1,6}\\})"
+				}
+			]
+		},
+		"constant": {
+			"patterns": [
+				{
+					"name":"constant.language.tql",
+					"match":"\\b(true|false)(?!-)\\b"
+				},
+				{
+					"name":"constant.numeric.tql",
+					"match": "[-+]?\\d+(\\.\\d+)?"
+				}
+			]
+		},
+		"variables": {			
+			"patterns": [
+				{
+					"match": "\\$[\\w-]+",
+					"captures": {
+						"0": {
+							"name": "variable.parameter.tql"
+						}
+					}
+				}
+			]
+		},
+		"comment": {
+			"patterns": [
+				{
+					"match": "#.*",
+					"name": "comment.tql"
+				}
+			]
+		}
+	},
+	"scopeName": "source.tql"
+}
