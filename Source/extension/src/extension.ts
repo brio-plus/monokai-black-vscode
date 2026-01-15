@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import { createHighlighter, type Highlighter, type BundledLanguage } from 'shiki';
 
 // Import the custom Monokai Black theme
@@ -7,9 +6,6 @@ import monokaiBlackTheme from '../themes/monokai-black-shiki.json';
 // Singleton highlighter instance
 let highlighter: Highlighter | null = null;
 let highlighterPromise: Promise<Highlighter> | null = null;
-
-// Theme name to match
-const MONOKAI_BLACK_THEME_NAME = 'Monokai Black';
 
 // Languages to support - common programming languages
 const SUPPORTED_LANGUAGES: BundledLanguage[] = [
@@ -73,16 +69,6 @@ const LANGUAGE_ALIASES: Record<string, string> = {
 };
 
 /**
- * Check if the current VS Code color theme is Monokai Black.
- */
-function isMonokaiBlackThemeActive(): boolean {
-  const currentTheme = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
-  const isActive = currentTheme.toLowerCase().includes('monokai black');
-  console.log(`[Monokai Black] Theme check: "${currentTheme}" -> isActive: ${isActive}`);
-  return isActive;
-}
-
-/**
  * Lazily initialize the Shiki highlighter.
  * Returns a promise that resolves to the highlighter instance.
  */
@@ -143,24 +129,19 @@ function isLanguageSupported(lang: string): boolean {
  * Returns the markdown-it plugin that VS Code will use.
  */
 export function activate() {
-  console.log('[Monokai Black] Extension activating...');
-
   // Start initializing the highlighter immediately in the background
-  getHighlighter()
-    .then(() => {
-      console.log('[Monokai Black] Shiki highlighter initialized successfully');
-    })
-    .catch(err => {
-      console.error('[Monokai Black] Failed to initialize Shiki highlighter:', err);
-    });
+  getHighlighter().catch(err => {
+    console.error('[Monokai Black] Failed to initialize Shiki highlighter:', err);
+  });
 
   return {
     extendMarkdownIt(md: any) {
-      console.log('[Monokai Black] extendMarkdownIt called');
-      // Store the original fence renderer
+
+      // Store the original fence renderer for fallback
       const defaultFence = md.renderer.rules.fence?.bind(md.renderer.rules);
 
-      // Override the fence renderer
+      // Override the fence renderer - ALWAYS apply Monokai Black highlighting
+      // since the user explicitly installed this extension for this purpose
       md.renderer.rules.fence = (
         tokens: any[],
         idx: number,
@@ -172,18 +153,6 @@ export function activate() {
         const info = token.info ? token.info.trim() : '';
         const lang = info.split(/\s+/)[0] || '';
         const code = token.content;
-
-        // Only apply Monokai Black highlighting if the theme is active
-        if (!isMonokaiBlackThemeActive()) {
-          // Theme not active - use default renderer
-          if (defaultFence) {
-            return defaultFence(tokens, idx, options, env, self);
-          }
-          // Ultimate fallback without Monokai styling
-          const escaped = escapeHtml(code);
-          const langClass = lang ? ` class="language-${escapeHtml(lang)}"` : '';
-          return `<pre><code${langClass}>${escaped}</code></pre>`;
-        }
 
         // Try to highlight with Shiki if the highlighter is ready
         if (highlighter && lang) {
@@ -202,7 +171,13 @@ export function activate() {
           }
         }
 
-        // Fallback: use default renderer if available
+        // If no language specified but highlighter is ready, still apply black background
+        if (highlighter && !lang) {
+          const escaped = escapeHtml(code);
+          return `<pre class="shiki" style="background-color:#000000;color:#f7f1ff;padding:16px;border-radius:4px;overflow-x:auto;"><code>${escaped}</code></pre>`;
+        }
+
+        // Fallback: use default renderer if available (highlighter not ready)
         if (defaultFence) {
           return defaultFence(tokens, idx, options, env, self);
         }
